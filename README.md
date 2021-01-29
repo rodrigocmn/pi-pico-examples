@@ -1,2 +1,3 @@
 # pi-pico-examples
-MicroPython code examples for Pi Pico
+
+This repository contain examples of coding 
