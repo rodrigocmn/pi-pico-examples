@@ -86,7 +86,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Commented lib folder to include example drivers.
+# lib/
 lib64/
 parts/
 sdist/
