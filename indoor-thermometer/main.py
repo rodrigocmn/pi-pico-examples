@@ -7,10 +7,9 @@ import utime
 WIDTH  = 128                                            # oled display width
 HEIGHT = 32                                             # oled display height
 
-i2c = I2C(0)                                            # Init I2C using I2C0 defaults, SCL=Pin(GP9), SDA=Pin(GP8), freq=400000
+i2c = I2C(0, scl=Pin(9), sda=Pin(8))                    # Init I2C using I2C0 defaults, SCL=Pin(GP9), SDA=Pin(GP8)
 print("I2C Address      : "+hex(i2c.scan()[0]).upper()) # Display device address
 print("I2C Configuration: "+str(i2c))                   # Display I2C config
-
 
 oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)                  # Init oled display
 
@@ -32,7 +31,6 @@ while True:
     reading = sensor_temp.read_u16() * conversion_factor
     temperature = 27 - (reading - 0.706) / 0.001721
 
-
     # Clear the oled display in case it has junk on it.
     oled.fill(0)
 
@@ -44,10 +42,8 @@ while True:
     oled.text("Temperature",5,13)
     oled.text("  is " + str(int(temperature)) +  " C",5,25)
 
-
     # Update the oled display so the image & text is displayed
     oled.show()
 
     # Sleep 2 seconds before measure again
     utime.sleep(2)
-
